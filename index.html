@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=`, initial-scale=1.0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Microsoft Form</title>
+</head>
+
+<body>
+  <div class="form_container">
+    <div class="top_heading_input">
+      <div class="header_container">
+        <h1 class="header">United form</h1>
+        <p class="header_des"></p>
+      </div>
+      <div id="header_input" class="input_container displayNone">
+        <input type="text" class="input1" placeholder="United form" name="name" />
+        <input type="text" class="input1" placeholder="Form description" name="description" />
+      </div>
+    </div>
+
+    <!-- choice buttons input field -->
+    <div class="choice_form">
+      <div class="btn_group">
+        <div class="btns">
+          <button>
+            <span class="material-symbols-outlined"> content_copy </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> south </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> north </span>
+          </button>
+        </div>
+      </div>
+      <div class="choice_form_input">
+        <input type="text" placeholder="hgkfu" />
+      </div>
+      <div class="options">
+        <label class="container">One
+          <input type="radio" checked="checked" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Two
+          <input type="radio" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="optionContainer">
+        <div class="optionbox">
+          <button>
+            <span class="material-symbols-outlined">add</span> Add option
+          </button>
+
+          <button>Add "Other" option</button>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="toggleContainer">
+        <div class="toggleBox">
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Multiple answers
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Required
+          </button>
+          <button>
+            <span class="material-symbols-outlined">
+              more_horiz
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- choice inputs output -->
+    <div class="choice_output_container">
+      <div class="choice_output">
+        <div class="ques_name">
+          <p>1. Question</p>
+        </div>
+
+        <div class="radio-box">
+          <div class="radio-option">
+            <input type="radio">
+            <p>Option 1</p>
+          </div>
+          <div class="radio-option">
+            <input type="radio">
+            <p>Option 2</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- text button input field -->
+    <div class="choice_form">
+      <div class="btn_group">
+        <div class="btns">
+          <button>
+            <span class="material-symbols-outlined"> content_copy </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> south </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> north </span>
+          </button>
+        </div>
+      </div>
+      <div class="choice_form_input">
+        <input type="text" placeholder="Question" />
+      </div>
+      <div class="text_ans_box">
+        <input type="text" placeholder="Enter your answer" />
+      </div>
+
+      <hr />
+
+      <div class="toggleContainer">
+        <div class="toggleBox">
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Multiple answers
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Required
+          </button>
+          <button>
+            <span class="material-symbols-outlined">
+              more_horiz
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- text button output field -->
+    <div class="choice_output_container">
+      <div class="choice_output">
+        <div class="ques_name">
+          <p>1. Question</p>
+        </div>
+
+        <div class="text_ans_Outbox">
+          <input class="text_outputInputField" type="text" placeholder="Enter your answer" />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- rating buttons input field -->
+    <div class="choice_form">
+      <div class="btn_group">
+        <div class="btns">
+          <button>
+            <span class="material-symbols-outlined"> content_copy </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> south </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> north </span>
+          </button>
+        </div>
+      </div>
+      <div class="choice_form_input">
+        <input type="text" placeholder="Question" />
+      </div>
+      <div class="ratingbox">
+        <div class="ratings">
+          <span class="material-symbols-outlined">
+            star
+          </span>
+          <span class="material-symbols-outlined">
+            star
+          </span>
+          <span class="material-symbols-outlined">
+            star
+          </span>
+          <span class="material-symbols-outlined">
+            star
+          </span>
+          <span class="material-symbols-outlined">
+            star
+          </span>
+        </div>
+
+        <div class="rating_input">
+          <div class="lavels">
+            <label for="lavels">Lavels:</label>
+            <select id="lavels" name="lavels">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="symbol">
+            <label for="symbol">Symbol:</label>
+            <select id="symbol" name="symbol">
+              <option value="star">
+                Star
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="toggleContainer">
+        <div class="toggleBox">
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Required
+          </button>
+          <button>
+            <span class="material-symbols-outlined">
+              more_horiz
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- rating button output field -->
+    <div class="rating_output_container">
+      <div class="rating_output">
+        <div class="ques_name">
+          <p>1. Question</p>
+        </div>
+
+        <div class="text_ans_Outbox">
+          <div class="ratings">
+            <span class="material-symbols-outlined">
+              star
+            </span>
+            <span class="material-symbols-outlined">
+              star
+            </span>
+            <span class="material-symbols-outlined">
+              star
+            </span>
+            <span class="material-symbols-outlined">
+              star
+            </span>
+            <span class="material-symbols-outlined">
+              star
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- date buttons input field -->
+    <div class="choice_form">
+      <div class="btn_group">
+        <div class="btns">
+          <button>
+            <span class="material-symbols-outlined"> content_copy </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> south </span>
+          </button>
+          <button>
+            <span class="material-symbols-outlined"> north </span>
+          </button>
+        </div>
+      </div>
+      <div class="choice_form_input">
+        <input type="text" placeholder="Question" />
+      </div>
+      <div class="text_ans_box">
+        <input type="date" placeholder="Please input date (m/d/yyyy)" />
+      </div>
+
+      <hr />
+
+      <div class="toggleContainer">
+        <div class="toggleBox">
+          <button>
+            <span class="material-symbols-outlined"> toggle_off </span> Required
+          </button>
+          <button>
+            <span class="material-symbols-outlined">
+              more_horiz
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  <!-- date buttons output field -->
+  <div class="rating_output_container">
+    <div class="rating_output">
+      <div class="ques_name">
+        <p>1. Question</p>
+      </div>
+
+      <div class="text_ans_Outbox">
+        <div class="text_ansOutput_box">
+          <input type="date" placeholder="Please input date (m/d/yyyy)" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+    <!-- add button section -->
+
+    <button class="addButton">
+      <span class="material-symbols-outlined">add</span> Add new
+    </button>
+
+    <div class="btnGroup">
+      <button class="plus">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+      <button class="buttons">
+        <span class="material-symbols-outlined"> radio_button_checked </span>
+        Choice
+      </button>
+      <button class="buttons">
+        <span class="material-symbols-outlined"> title </span>
+        Text
+      </button>
+      <button class="buttons">
+        <span class="material-symbols-outlined"> thumb_up </span>
+        Rating
+      </button>
+      <button class="buttons">
+        <span class="material-symbols-outlined"> calendar_month </span>
+        Date
+      </button>
+      <button class="buttons">
+        <span class="material-symbols-outlined">
+          expand_more
+        </span>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
