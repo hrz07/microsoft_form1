@@ -10,6 +10,9 @@ const buttons = document.querySelector(".buttons button");
 const input1 = document.querySelector(".input1");
 const btnGroup = document.querySelector(".btnGroup");
 const plus = document.querySelector(".plus");
+const side_btn_parent = document.querySelector(".side_btn_parent");
+const side_buttons = document.querySelector(".side_buttons");
+
 // const body = document.getElementsByTagName('body');
 const header_input = document
   .getElementById("header_input")
@@ -17,6 +20,7 @@ const header_input = document
 
 let headingToggler = false;
 let btnToggler = false;
+let sideBtnsShow = false;
 
 body.addEventListener("click", (e) => {
   e.stopPropagation();
@@ -88,5 +92,18 @@ plus.addEventListener('click',()=>{
     btnGroup.style.display='none';
     addButton.style.display='flex';
 })
+
+
+side_btn_parent.addEventListener('click',()=>{
+  sideBtnsShow = !sideBtnsShow;
+
+  if(sideBtnsShow){
+    side_buttons.style.display= 'block';
+  }else{
+    side_buttons.style.display= 'none';
+  }
+})
+
+
 
 
