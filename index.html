@@ -27,7 +27,7 @@
     </div>
 
     <!-- choice buttons input field -->
-    <div class="choice_form">
+    <div id="choice_form" class="choice_form">
       <div class="btn_group">
         <div class="btns">
           <button>
@@ -45,17 +45,17 @@
         </div>
       </div>
       <div class="choice_form_input">
-        <input type="text" placeholder="hgkfu" />
+        <input type="text" placeholder="Question" />
       </div>
       <div class="options">
-        <label class="container">One
-          <input type="radio" checked="checked" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Two
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
+        <div class="option_boxx">
+          <input type="radio">
+          <input type="text" placeholder="Option1" class="">
+        </div>
+        <div class="option_boxx">
+          <input type="radio">
+          <input type="text"  placeholder="Option2" class="">
+        </div>
       </div>
 
       <div class="optionContainer">
@@ -88,7 +88,7 @@
     </div>
 
     <!-- choice inputs output -->
-    <div class="choice_output_container">
+    <div id="choice_output_container" class="choice_output_container">
       <div class="choice_output">
         <div class="ques_name">
           <p>1. Question</p>
@@ -111,7 +111,7 @@
 
 
     <!-- text button input field -->
-    <div class="choice_form">
+    <div id="text_form" class="choice_form">
       <div class="btn_group">
         <div class="btns">
           <button>
@@ -155,7 +155,7 @@
     </div>
 
     <!-- text button output field -->
-    <div class="choice_output_container">
+    <div id="text_output_form" class="choice_output_container">
       <div class="choice_output">
         <div class="ques_name">
           <p>1. Question</p>
@@ -169,7 +169,7 @@
     </div>
 
     <!-- rating buttons input field -->
-    <div class="choice_form">
+    <div id="rating_input" class="choice_form">
       <div class="btn_group">
         <div class="btns">
           <button>
@@ -252,7 +252,7 @@
     </div>
 
     <!-- rating button output field -->
-    <div class="rating_output_container">
+    <div id="rating_output" class="rating_output_container">
       <div class="rating_output">
         <div class="ques_name">
           <p>1. Question</p>
@@ -283,7 +283,7 @@
 
 
     <!-- date buttons input field -->
-    <div class="choice_form">
+    <div id="date_input" class="choice_form">
       <div class="btn_group">
         <div class="btns">
           <button>
@@ -324,7 +324,7 @@
     </div>
 
     <!-- date buttons output field -->
-    <div class="rating_output_container">
+    <div id="date_output" class="rating_output_container">
       <div class="rating_output">
         <div class="ques_name">
           <p>1. Question</p>
@@ -347,22 +347,22 @@
     </button>
 
     <div class="btnGroup">
-      <button class="plus">
+      <button  class="plus" >
         <span class="material-symbols-outlined">add</span>
       </button>
-      <button class="buttons checkedBtn">
+      <button id="choice_button" class="buttons checkedBtn">
         <span class="material-symbols-outlined"> radio_button_checked </span>
         Choice
       </button>
-      <button class="buttons">
-        <span class="material-symbols-outlined"> title </span>
+      <button id="text_btn" class="buttons">
+        <span  class="material-symbols-outlined"> title </span>
         Text
       </button>
-      <button class="buttons">
+      <button id="rating_btn" class="buttons">
         <span class="material-symbols-outlined"> thumb_up </span>
         Rating
       </button>
-      <button class="buttons">
+      <button id="date_btn" class="buttons">
         <span class="material-symbols-outlined"> calendar_month </span>
         Date
       </button>
