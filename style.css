@@ -251,6 +251,15 @@ hr {
   display: none;
 }
 
+.choice_output_Resultcontainer {
+  width: 785px;
+  min-height: 200px;
+  margin: 20px auto;
+  border-radius: 2px;
+  padding: 10px;
+  transition: all .6s ease;
+}
+
 .choice_output_container:hover {
   background-color: #f5f5f5;
 }
@@ -459,8 +468,8 @@ hr {
 #date_output{
   display: none;
 }
-#choice_form{
+/* #choice_form{
   display: none;
-}
+} */
 
 
