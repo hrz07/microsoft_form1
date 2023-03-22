@@ -71,6 +71,22 @@ const choice_output_list = []
 
 
 
+
+const showContent = (index, data)=>{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 body.addEventListener("click", (e) => {
   e.stopPropagation();
 
@@ -222,7 +238,6 @@ choice_button.addEventListener("click", (e) => {
   e.stopPropagation();
   e.preventDefault();
 
-  console.log("called")
 
   // let choice_ques_inputVal = choice_ques_input.value;
   // let choice_opton1_inputVal = choice_opton1_input.value;
@@ -232,97 +247,195 @@ choice_button.addEventListener("click", (e) => {
 
   const index = choice_output_list.length - 1;
 
-  if (
-    e.target !== choice_ques_input &&
-    e.target !== choice_opton1_input &&
-    e.target !== choice_opton2_input
-  ) {
-    // choice_form.style.display = "none";
-    // choice_output_container.style.display = "block";
 
-    choice_result.innerHTML += `<div class="choice${index}"> </div>`;
 
-    const singleChoice = document.querySelector(`.choice${index}`);
-   
+  const div = document.createElement('div')
+  div.id = `choice${index}`
 
-    singleChoice.innerHTML += ` <div id="choice_form" class="choice_form">
-    <div class="btn_group">
-      <div class="btns">
-        <button>
-          <span class="material-symbols-outlined"> content_copy </span>
-        </button>
-        <button>
-          <span class="material-symbols-outlined"> delete </span>
-        </button>
-        <button>
-          <span class="material-symbols-outlined"> south </span>
-        </button>
-        <button>
-          <span class="material-symbols-outlined"> north </span>
-        </button>
-      </div>
-    </div>
-    <div class="choice_form_input">
-      <input id="choice_ques_input" type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
-    </div>
-    <div class="options">
-      <div class="option_boxx">
-        <input type="radio" />
-        <input
-          id="choice_opton1_input"
-          type="text"
-          placeholder="Option1"
-          value="${choice_output_list[index].option1}"
-          class=""
-        />
-      </div>
-      <div class="option_boxx">
-        <input type="radio" />
-        <input
-          id="choice_opton2_input"
-          type="text"
-          placeholder="Option2"
-          value="${choice_output_list[index].option2}"
-          class=""
-        />
-      </div>
-    </div>
+  // choice_result.innerHTML += `<div class="choice${index}"> </div>`;
+  
+ div.innerHTML += ` <div  class="choice_form">
+ <div class="btn_group">
+   <div class="btns">
+     <button>
+       <span class="material-symbols-outlined"> content_copy </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> delete </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> south </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> north </span>
+     </button>
+   </div>
+ </div>
+ <div class="choice_form_input">
+   <input class="${index} inpu${index}" id="choice_ques_input"  type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
+ </div>
+ <div class="options">
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton1_input"
+       type="text"
+       placeholder="Option1"
+       value="${choice_output_list[index].option1}"
+       class="${index} op1${index}"
+     />
+   </div>
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton2_input"
+       type="text"
+       placeholder="Option2"
+       value="${choice_output_list[index].option2}"
+       class="${index} op2${index}"
+     />
+   </div>
+ </div>
 
-    <div class="optionContainer">
-      <div class="optionbox">
-        <button>
-          <span class="material-symbols-outlined">add</span> Add option
-        </button>
+ <div class="optionContainer">
+   <div class="optionbox">
+     <button>
+       <span class="material-symbols-outlined">add</span> Add option
+     </button>
 
-        <button>Add "Other" option</button>
-      </div>
-    </div>
+     <button>Add "Other" option</button>
+   </div>
+ </div>
 
-    <hr />
+ <hr />
 
-    <div class="toggleContainer">
-      <div class="toggleBox">
-        <button>
-          <span class="material-symbols-outlined"> toggle_off </span>
-          Multiple answers
-        </button>
-        <button>
-          <span class="material-symbols-outlined"> toggle_off </span>
-          Required
-        </button>
-        <button>
-          <span class="material-symbols-outlined"> more_horiz </span>
-        </button>
-      </div>
-    </div>
-  </div>`
+ <div class="toggleContainer">
+   <div class="toggleBox">
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Multiple answers
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Required
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> more_horiz </span>
+     </button>
+   </div>
+ </div>
+</div>`
 
-  }
+  // const singleChoice = document.querySelector(`.choice${index}`);
+ 
+//   singleChoice.innerHTML += ` <div id="choice_form" class="choice_form">
+//   <div class="btn_group">
+//     <div class="btns">
+//       <button>
+//         <span class="material-symbols-outlined"> content_copy </span>
+//       </button>
+//       <button>
+//         <span class="material-symbols-outlined"> delete </span>
+//       </button>
+//       <button>
+//         <span class="material-symbols-outlined"> south </span>
+//       </button>
+//       <button>
+//         <span class="material-symbols-outlined"> north </span>
+//       </button>
+//     </div>
+//   </div>
+//   <div class="choice_form_input">
+//     <input id="choice_ques_input" type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
+//   </div>
+//   <div class="options">
+//     <div class="option_boxx">
+//       <input type="radio" />
+//       <input
+//         id="choice_opton1_input"
+//         type="text"
+//         placeholder="Option1"
+//         value="${choice_output_list[index].option1}"
+//         class=""
+//       />
+//     </div>
+//     <div class="option_boxx">
+//       <input type="radio" />
+//       <input
+//         id="choice_opton2_input"
+//         type="text"
+//         placeholder="Option2"
+//         value="${choice_output_list[index].option2}"
+//         class=""
+//       />
+//     </div>
+//   </div>
 
+//   <div class="optionContainer">
+//     <div class="optionbox">
+//       <button>
+//         <span class="material-symbols-outlined">add</span> Add option
+//       </button>
+
+//       <button>Add "Other" option</button>
+//     </div>
+//   </div>
+
+//   <hr />
+
+//   <div class="toggleContainer">
+//     <div class="toggleBox">
+//       <button>
+//         <span class="material-symbols-outlined"> toggle_off </span>
+//         Multiple answers
+//       </button>
+//       <button>
+//         <span class="material-symbols-outlined"> toggle_off </span>
+//         Required
+//       </button>
+//       <button>
+//         <span class="material-symbols-outlined"> more_horiz </span>
+//       </button>
+//     </div>
+//   </div>
+// </div>`
+ 
+
+  choice_result.appendChild(div)
+
+  const choice_ques_input = document.querySelector(`.inpu${index}`);
+  console.log(choice_ques_input)
+  choice_ques_input.addEventListener('input', (e) => {
+    const index  = Number(e.target.classList[0])
+    console.log(index)
+    choice_output_list[index].ques = e.target.value;
+    console.log(choice_output_list)
+    
+  })
+
+ 
+
+  const choice_option_input = document.querySelector(`.op1${index}`);
+  console.log(choice_ques_input)
+  choice_option_input.addEventListener('input', (e) => {
+    const index  = Number(e.target.classList[0])
+    console.log(index)
+    choice_output_list[index].option1 = e.target.value;
+    console.log(choice_output_list);
+  })
+
+  
 })
 
 
 
+choice_form.addEventListener('click',()=>{
+  let choiceQues = document.querySelector('#choice_ques_input').value;
+  let choiceOption1 = document.querySelector('#choice_opton1_input').value;
+  let choiceOption2 = document.querySelector('#choice_opton2_input').value;
+  
+  console.log(choiceQues,choiceOption1,choiceOption2);
+})
 
 
 
