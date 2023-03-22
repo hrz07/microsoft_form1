@@ -62,7 +62,8 @@ const choice_output_Resultcontainer = ` {
 const choice_input_temp = {
   ques : 'ques1',
   option1: 'op1',
-  option2: 'op2'
+  option2: 'op2',
+  status: false
 }
 const choice_output_list = []
 
@@ -72,8 +73,103 @@ const choice_output_list = []
 
 
 
-const showContent = (index, data)=>{
+const showContent = ()=>{
+      choice_output_list.forEach((data, i) => {
+        if(data.status) {
+          document.getElementById(`choice${i}`).innerHTML = `
+          <div id="choice_output_container" class="choice_output_container">
+          <div class="choice_output">
+            <div class="ques_name">
+              <p id="choice_output_ques">${i+1}. ${data.ques}</p>
+            </div>
 
+            <div class="radio-box">
+              <div class="radio-option">
+                <input type="radio" />
+                <p id="choice_output_option1">${data.option1}</p>
+              </div>
+              <div class="radio-option">
+                <input type="radio" />
+                <p id="choice_output_option2">${data.option2}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+          `
+        } else {
+          document.getElementById(`choice${i}`).innerHTML = ` <div  class="choice_form">
+          <div class="btn_group">
+            <div class="btns">
+              <button>
+                <span class="material-symbols-outlined"> content_copy </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> delete </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> south </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> north </span>
+              </button>
+            </div>
+          </div>
+          <div class="choice_form_input">
+            <input class="${i} inpu${i}" id="choice_ques_input"  type="text" value="${data.ques}" placeholder="Question" />
+          </div>
+          <div class="options">
+            <div class="option_boxx">
+              <input type="radio" />
+              <input
+                id="choice_opton1_input"
+                type="text"
+                placeholder="Option1"
+                value="${data.option1}"
+                class="${i} op1${i}"
+              />
+            </div>
+            <div class="option_boxx">
+              <input type="radio" />
+              <input
+                id="choice_opton2_input"
+                type="text"
+                placeholder="Option2"
+                value="${data.option2}"
+                class="${i} op2${i}"
+              />
+            </div>
+          </div>
+         
+          <div class="optionContainer">
+            <div class="optionbox">
+              <button>
+                <span class="material-symbols-outlined">add</span> Add option
+              </button>
+         
+              <button>Add "Other" option</button>
+            </div>
+          </div>
+         
+          <hr />
+         
+          <div class="toggleContainer">
+            <div class="toggleBox">
+              <button>
+                <span class="material-symbols-outlined"> toggle_off </span>
+                Multiple answers
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> toggle_off </span>
+                Required
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> more_horiz </span>
+              </button>
+            </div>
+          </div>
+         </div>`
+        }
+      })
 }
 
 
@@ -89,6 +185,13 @@ const showContent = (index, data)=>{
 
 body.addEventListener("click", (e) => {
   e.stopPropagation();
+
+  for(let i=0;i<choice_output_list.length;i++) {
+    choice_output_list[i].status = true;
+  }
+
+  showContent()
+  
 
   if (e.target == body) {
     document.querySelector(".header_container").classList.add("displayNone");
@@ -251,6 +354,10 @@ choice_button.addEventListener("click", (e) => {
 
   const div = document.createElement('div')
   div.id = `choice${index}`
+
+  div.addEventListener('click', (e) => {
+    e.stopPropagation()
+  })
 
   // choice_result.innerHTML += `<div class="choice${index}"> </div>`;
   
