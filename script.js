@@ -36,7 +36,7 @@ const choice_output_option2 = document.querySelector("#choice_output_option2");
 const choice = document.querySelector(".choice");
 
 // display section
-
+text_output_form.style.display = "none";
 // const body = document.getElementsByTagName('body');
 const header_input = document
   .getElementById("header_input")
@@ -45,8 +45,6 @@ const header_input = document
 let headingToggler = false;
 let btnToggler = false;
 let sideBtnsShow = false;
-
-
 
 // style
 const choice_output_Resultcontainer = ` {
@@ -57,30 +55,66 @@ const choice_output_Resultcontainer = ` {
   padding: 10px;
   transition: all .6s ease;
 }
-`
+`;
 
 const choice_input_temp = {
-  ques : 'ques1',
-  option1: 'op1',
-  option2: 'op2',
-  status: false
+  ques: "",
+  option1: "",
+  option2: "",
+  status: false,
+};
+
+const text_input_temp = {
+  ques: "ques1",
+  option1: "op1",
+  status: false,
+};
+
+let choice_output_list = [];
+const text_output_list = [];
+
+const dataDelete = (i) => {
+  let parent = document.querySelector("choice_result");
+  let child = document.querySelector(`#choice${i}`);
+  child.remove();
+  let rest = choice_output_list.filter((data, index) => {
+    return i !== index;
+  });
+
+  choice_output_list = [...rest];
+};
+
+const cpy = (i) => {
+  let copyEle = document.querySelector(`.inpu${i}`);
+  copyEle.focus();
+  copyEle.select();
+  let sc = document.execCommand("copy");
+  if (sc) {
+    alert("copied text");
+  }
+};
+
+const choiceAddOption = ()=>{
+  console.log("ok");
 }
-const choice_output_list = []
 
 
+document.querySelector("#choice_output_container").style.display = "none";
+const showContent = (index) => {
+  if (typeof index === "number" && index >= 0) {
+    choice_output_list[index].status = false;
+  }
+  choice_output_list.forEach((data, i) => {
+    let check = document.getElementById(`choice${i}`);
 
+    document.getElementById(`choice${i}`).innerHTML = "";
 
-
-
-
-const showContent = ()=>{
-      choice_output_list.forEach((data, i) => {
-        if(data.status) {
-          document.getElementById(`choice${i}`).innerHTML = `
+    if (data?.status) {
+      document.getElementById(`choice${i}`).innerHTML = `
           <div id="choice_output_container" class="choice_output_container">
           <div class="choice_output">
             <div class="ques_name">
-              <p id="choice_output_ques">${i+1}. ${data.ques}</p>
+              <p id="choice_output_ques">${i + 1}. ${data.ques}</p>
             </div>
 
             <div class="radio-box">
@@ -95,16 +129,18 @@ const showContent = ()=>{
             </div>
           </div>
         </div>
-          `
-        } else {
-          document.getElementById(`choice${i}`).innerHTML = ` <div  class="choice_form">
+          `;
+    } else {
+      const div = document.createElement("div");
+      div.classList.add("choice_form");
+      div.innerHTML = `
           <div class="btn_group">
             <div class="btns">
-              <button>
-                <span class="material-symbols-outlined"> content_copy </span>
+            <button onClick="cpy(${i})">
+                <span class="material-symbols-outlined js-textareacopybtn"> content_copy </span>
               </button>
               <button>
-                <span class="material-symbols-outlined"> delete </span>
+                <span class="material-symbols-outlined" onClick="dataDelete(${i})"> delete </span>
               </button>
               <button>
                 <span class="material-symbols-outlined"> south </span>
@@ -115,7 +151,7 @@ const showContent = ()=>{
             </div>
           </div>
           <div class="choice_form_input">
-            <input class="${i} inpu${i}" id="choice_ques_input"  type="text" value="${data.ques}" placeholder="Question" />
+       <input class="${i} inpu${i}" id="choice_ques_input"  type="text" value="${data.ques}" placeholder="Question" />
           </div>
           <div class="options">
             <div class="option_boxx">
@@ -142,7 +178,7 @@ const showContent = ()=>{
          
           <div class="optionContainer">
             <div class="optionbox">
-              <button>
+              <button onClick="choiceAddOption()">
                 <span class="material-symbols-outlined">add</span> Add option
               </button>
          
@@ -166,32 +202,39 @@ const showContent = ()=>{
                 <span class="material-symbols-outlined"> more_horiz </span>
               </button>
             </div>
-          </div>
-         </div>`
-        }
-      })
-}
+          </div>`;
 
+      document.getElementById(`choice${i}`).appendChild(div);
 
+      const choice_ques_input = document.querySelector(`.inpu${i}`);
+      choice_ques_input.addEventListener("input", (e) => {
+        const index = Number(e.target.classList[0]);
+        choice_output_list[index].ques = e.target.value;
+      });
 
+      const choice_option_input = document.querySelector(`.op1${i}`);
+      choice_option_input.addEventListener("input", (e) => {
+        const index = Number(e.target.classList[0]);
+        choice_output_list[index].option1 = e.target.value;
+      });
 
-
-
-
-
-
-
-
+      const choice_option2_input = document.querySelector(`.op2${i}`);
+      choice_option2_input.addEventListener("input", (e) => {
+        const index = Number(e.target.classList[0]);
+        choice_output_list[index].option2 = e.target.value;
+      });
+    }
+  });
+};
 
 body.addEventListener("click", (e) => {
   e.stopPropagation();
 
-  for(let i=0;i<choice_output_list.length;i++) {
+  for (let i = 0; i < choice_output_list.length; i++) {
     choice_output_list[i].status = true;
   }
 
-  showContent()
-  
+  showContent();
 
   if (e.target == body) {
     document.querySelector(".header_container").classList.add("displayNone");
@@ -275,93 +318,193 @@ side_btn_parent.addEventListener("click", (e) => {
   }
 });
 
-
-
-
-// choice_button.addEventListener("click", (e) => {
-//   e.stopPropagation();
-
-//   btnGroup.style.display = "none";
-//   addButton.style.display = "flex";
-
-//   choice_form.style.display = "block";
-
-//   body.addEventListener("click", (e) => {
-//     e.stopPropagation();
-
-//     if (e.target == body) {
-//       choice_form.style.display = "none";
-//       choice_output_container.style.display = "block";
-//     }
-//   });
-// });
-
-
-
-
-
-
-
-// <--------------------choice button------------------------->
-
-// choice_form.addEventListener("click", (e) => {
-//   e.stopPropagation();
-//   e.preventDefault();
-
-//   let choice_ques_inputVal = choice_ques_input.value;
-//   let choice_opton1_inputVal = choice_opton1_input.value;
-//   let choice_opton2_inputVal = choice_opton2_input.value;
-
-//   if (
-//     e.target !== choice_ques_input &&
-//     e.target !== choice_opton1_input &&
-//     e.target !== choice_opton2_input
-//   ) {
-//     choice_form.style.display = "none";
-//     choice_output_container.style.display = "block";
-//   }
-
-//   if(choice_ques_input.length > 0  && choice_opton1_input.length > 0 && choice_opton2_input.length > 0){
-//     choice_output_ques.innerText = choice_ques_inputVal;
-//     choice_output_option1.innerText = choice_opton1_inputVal;
-//     choice_output_option2.innerText = choice_opton2_inputVal;
-
-
-//     choice_result.innerHTML = ''
-//     choice_result.innerHTML = `${choice.innerHTML}`
-//   }
- 
-//   console.log(choice);
-//   console.log(choice_result);
-// });
-
-
+// <------------------choice button----------------------->
 
 choice_button.addEventListener("click", (e) => {
   e.stopPropagation();
   e.preventDefault();
 
-
-  // let choice_ques_inputVal = choice_ques_input.value;
-  // let choice_opton1_inputVal = choice_opton1_input.value;
-  // let choice_opton2_inputVal = choice_opton2_input.value;
-
-  choice_output_list.push({...choice_input_temp})
+  choice_output_list.push({ ...choice_input_temp });
 
   const index = choice_output_list.length - 1;
 
+  const div = document.createElement("div");
+  div.id = `choice${index}`;
+  div.classList.add(`${index}`);
 
+  div.addEventListener("click", (e) => {
+    e.stopPropagation();
 
-  const div = document.createElement('div')
-  div.id = `choice${index}`
+    const parent = e.target.closest(".choice_output_container");
+    const index = Number(e.currentTarget.classList[0]);
 
-  div.addEventListener('click', (e) => {
-    e.stopPropagation()
-  })
+    if (parent) {
+      showContent(index);
+    }
+  });
 
-  // choice_result.innerHTML += `<div class="choice${index}"> </div>`;
-  
- div.innerHTML += ` <div  class="choice_form">
+  div.innerHTML += ` <div class="choice_form">
+ <div class="btn_group">
+   <div class="btns">
+     <button onClick="cpy(${index})">
+       <span class="material-symbols-outlined js-textareacopybtn"> content_copy </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"  onClick="dataDelete(${index})" > delete </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> south </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> north </span>
+     </button>
+   </div>
+ </div>
+ <div class="choice_form_input">
+   <input class="${index} inpu${index}" id="choice_ques_input"  type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
+ </div>
+ <div class="options">
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton1_input"
+       type="text"
+       placeholder="Option1"
+       value="${choice_output_list[index].option1}"
+       class="${index} op1${index}"
+     />
+   </div>
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton2_input"
+       type="text"
+       placeholder="Option2"
+       value="${choice_output_list[index].option2}"
+       class="${index} op2${index}"
+     />
+   </div>
+ </div>
+
+ <div class="optionContainer">
+   <div class="optionbox">
+     <button onClick="choiceAddOption()">
+       <span class="material-symbols-outlined">add</span> Add option
+     </button>
+
+     <button>Add "Other" option</button>
+   </div>
+ </div>
+
+ <hr />
+
+ <div class="toggleContainer">
+   <div class="toggleBox">
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Multiple answers
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Required
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> more_horiz </span>
+     </button>
+   </div>
+ </div>
+</div>`;
+
+  choice_result.appendChild(div);
+
+  const choice_ques_input = document.querySelector(`.inpu${index}`);
+  choice_ques_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].ques = e.target.value;
+  });
+
+  const choice_option_input = document.querySelector(`.op1${index}`);
+  choice_option_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].option1 = e.target.value;
+  });
+
+  const choice_option2_input = document.querySelector(`.op2${index}`);
+  choice_option2_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].option2 = e.target.value;
+  });
+});
+
+// <------------------text button---------------------->
+
+// text_btn.addEventListener("click", (e) => {
+//   e.stopPropagation();
+
+//   btnGroup.style.display = "none";
+//   addButton.style.display = "flex";
+
+//   if ((choice_form.style.display = "none")) {
+//     choice_output_container.style.display = "none";
+//   }
+
+//   if ((choice_form.style.display = "block")) {
+//     choice_output_container.style.display = "block";
+//     choice_form.style.display = "none";
+//   }
+
+//   text_form.style.display = "block";
+
+//   body.addEventListener("click", (e) => {
+//     e.stopPropagation();
+
+//     if (e.target == body) {
+//       text_form.style.display = "none";
+//       text_output_form.style.display = "block";
+//     }
+//   });
+// });
+
+// text_form.addEventListener("click", (e) => {
+//   e.stopPropagation();
+
+//   text_form.style.display = "none";
+//   text_output_form.style.display = "block";
+// });
+
+// text_output_form.addEventListener("click", (e) => {
+//   e.stopPropagation();
+
+//   text_form.style.display = "block";
+//   text_output_form.style.display = "none";
+// });
+
+text_btn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+
+  text_output_list.push({ ...text_input_temp });
+
+  const index = text_output_list.length - 1;
+
+  const div = document.createElement("div");
+  div.id = `choice${index}`;
+  div.classList.add(`${index}`);
+
+  div.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const parent = e.target.closest(".choice_output_container");
+    const index = Number(e.currentTarget.classList[0]);
+    console.log(parent);
+    console.log(index);
+
+    if (parent) {
+      showContent(index);
+    }
+  });
+
+  div.innerHTML += ` <div  class="choice_form">
  <div class="btn_group">
    <div class="btns">
      <button>
@@ -431,167 +574,27 @@ choice_button.addEventListener("click", (e) => {
      </button>
    </div>
  </div>
-</div>`
+</div>`;
 
-  // const singleChoice = document.querySelector(`.choice${index}`);
- 
-//   singleChoice.innerHTML += ` <div id="choice_form" class="choice_form">
-//   <div class="btn_group">
-//     <div class="btns">
-//       <button>
-//         <span class="material-symbols-outlined"> content_copy </span>
-//       </button>
-//       <button>
-//         <span class="material-symbols-outlined"> delete </span>
-//       </button>
-//       <button>
-//         <span class="material-symbols-outlined"> south </span>
-//       </button>
-//       <button>
-//         <span class="material-symbols-outlined"> north </span>
-//       </button>
-//     </div>
-//   </div>
-//   <div class="choice_form_input">
-//     <input id="choice_ques_input" type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
-//   </div>
-//   <div class="options">
-//     <div class="option_boxx">
-//       <input type="radio" />
-//       <input
-//         id="choice_opton1_input"
-//         type="text"
-//         placeholder="Option1"
-//         value="${choice_output_list[index].option1}"
-//         class=""
-//       />
-//     </div>
-//     <div class="option_boxx">
-//       <input type="radio" />
-//       <input
-//         id="choice_opton2_input"
-//         type="text"
-//         placeholder="Option2"
-//         value="${choice_output_list[index].option2}"
-//         class=""
-//       />
-//     </div>
-//   </div>
-
-//   <div class="optionContainer">
-//     <div class="optionbox">
-//       <button>
-//         <span class="material-symbols-outlined">add</span> Add option
-//       </button>
-
-//       <button>Add "Other" option</button>
-//     </div>
-//   </div>
-
-//   <hr />
-
-//   <div class="toggleContainer">
-//     <div class="toggleBox">
-//       <button>
-//         <span class="material-symbols-outlined"> toggle_off </span>
-//         Multiple answers
-//       </button>
-//       <button>
-//         <span class="material-symbols-outlined"> toggle_off </span>
-//         Required
-//       </button>
-//       <button>
-//         <span class="material-symbols-outlined"> more_horiz </span>
-//       </button>
-//     </div>
-//   </div>
-// </div>`
- 
-
-  choice_result.appendChild(div)
+  choice_result.appendChild(div);
 
   const choice_ques_input = document.querySelector(`.inpu${index}`);
-  console.log(choice_ques_input)
-  choice_ques_input.addEventListener('input', (e) => {
-    const index  = Number(e.target.classList[0])
-    console.log(index)
+  choice_ques_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
     choice_output_list[index].ques = e.target.value;
-    console.log(choice_output_list)
-    
-  })
-
- 
+  });
 
   const choice_option_input = document.querySelector(`.op1${index}`);
-  console.log(choice_ques_input)
-  choice_option_input.addEventListener('input', (e) => {
-    const index  = Number(e.target.classList[0])
-    console.log(index)
+  choice_option_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
     choice_output_list[index].option1 = e.target.value;
-    console.log(choice_output_list);
-  })
-
-  
-})
-
-
-
-choice_form.addEventListener('click',()=>{
-  let choiceQues = document.querySelector('#choice_ques_input').value;
-  let choiceOption1 = document.querySelector('#choice_opton1_input').value;
-  let choiceOption2 = document.querySelector('#choice_opton2_input').value;
-  
-  console.log(choiceQues,choiceOption1,choiceOption2);
-})
-
-
-
-// choice_output_container.addEventListener("click", (e) => {
-//   e.stopPropagation();
-
-//   choice_form.style.display = "block";
-//   choice_output_container.style.display = "none";
-// });
-
-text_btn.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  btnGroup.style.display = "none";
-  addButton.style.display = "flex";
-
-  if ((choice_form.style.display = "none")) {
-    choice_output_container.style.display = "none";
-  }
-
-  if ((choice_form.style.display = "block")) {
-    choice_output_container.style.display = "block";
-    choice_form.style.display = "none";
-  }
-
-  text_form.style.display = "block";
-
-  body.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    if (e.target == body) {
-      text_form.style.display = "none";
-      text_output_form.style.display = "block";
-    }
   });
-});
 
-text_form.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  text_form.style.display = "none";
-  text_output_form.style.display = "block";
-});
-
-text_output_form.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  text_form.style.display = "block";
-  text_output_form.style.display = "none";
+  const choice_option2_input = document.querySelector(`.op2${index}`);
+  choice_option2_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].option2 = e.target.value;
+  });
 });
 
 rating_btn.addEventListener("click", (e) => {

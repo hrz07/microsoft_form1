@@ -18,7 +18,7 @@
     <div class="form_container">
       <div class="top_heading_input">
         <div class="header_container">
-          <h1 class="header">United form</h1>
+          <h1 class="header">Online Quize Exam</h1>
           <p class="header_des"></p>
         </div>
         <div id="header_input" class="input_container displayNone">
@@ -47,7 +47,7 @@
         <div id="choice_form" class="choice_form">
           <div class="btn_group">
             <div class="btns">
-              <button>
+              <button class="cpybtn">
                 <span class="material-symbols-outlined"> content_copy </span>
               </button>
               <button>
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="choice_form_input">
-            <input id="choice_ques_input" type="text" placeholder="Question" />
+            <input id="choice_ques_input" class="js-copytextarea" type="text" placeholder="Question" />
           </div>
           <div class="options">
             <div class="option_boxx">
@@ -137,66 +137,81 @@
 
 
 
-      <!-- text button input field -->
-      <div id="text_form" class="choice_form">
-        <div class="btn_group">
-          <div class="btns">
-            <button>
-              <span class="material-symbols-outlined"> content_copy </span>
-            </button>
-            <button>
-              <span class="material-symbols-outlined"> delete </span>
-            </button>
-            <button>
-              <span class="material-symbols-outlined"> south </span>
-            </button>
-            <button>
-              <span class="material-symbols-outlined"> north </span>
-            </button>
+
+      <!-- text field result -->
+      <div class="text_result"></div>
+
+
+      <div class="text">
+        <div id="text_form" class="text_input_form">
+          <div class="btn_group">
+            <div class="btns">
+              <button>
+                <span class="material-symbols-outlined"> content_copy </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> delete </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> south </span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> north </span>
+              </button>
+            </div>
+          </div>
+          <div class="choice_form_input">
+            <input type="text" placeholder="Question" />
+          </div>
+          <div class="text_ans_box">
+            <input type="text" placeholder="Enter your answer" />
+          </div>
+  
+          <hr />
+  
+          <div class="toggleContainer">
+            <div class="toggleBox">
+              <button>
+                <span class="material-symbols-outlined"> toggle_off </span>
+                Multiple answers
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> toggle_off </span>
+                Required
+              </button>
+              <button>
+                <span class="material-symbols-outlined"> more_horiz </span>
+              </button>
+            </div>
           </div>
         </div>
-        <div class="choice_form_input">
-          <input type="text" placeholder="Question" />
-        </div>
-        <div class="text_ans_box">
-          <input type="text" placeholder="Enter your answer" />
-        </div>
-
-        <hr />
-
-        <div class="toggleContainer">
-          <div class="toggleBox">
-            <button>
-              <span class="material-symbols-outlined"> toggle_off </span>
-              Multiple answers
-            </button>
-            <button>
-              <span class="material-symbols-outlined"> toggle_off </span>
-              Required
-            </button>
-            <button>
-              <span class="material-symbols-outlined"> more_horiz </span>
-            </button>
+  
+     
+        <div id="text_output_form" class="text_output_form">
+          <div class="choice_output">
+            <div class="ques_name">
+              <p>1. Question</p>
+            </div>
+  
+            <div class="text_ans_Outbox">
+              <input
+                class="text_outputInputField"
+                type="text"
+                placeholder="Enter your answer"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- text button output field -->
-      <div id="text_output_form" class="choice_output_container">
-        <div class="choice_output">
-          <div class="ques_name">
-            <p>1. Question</p>
-          </div>
+    
 
-          <div class="text_ans_Outbox">
-            <input
-              class="text_outputInputField"
-              type="text"
-              placeholder="Enter your answer"
-            />
-          </div>
-        </div>
+
+      <div class="rating_result">
+
       </div>
+
+
 
       <!-- rating buttons input field -->
       <div id="rating_input" class="choice_form">
@@ -286,6 +301,10 @@
           </div>
         </div>
       </div>
+
+
+
+
 
       <!-- date buttons input field -->
       <div id="date_input" class="choice_form">
