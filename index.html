@@ -40,8 +40,6 @@
       <!-- choice result -->
       <div id="choice_result"></div>
 
-
-
       <div class="choice">
         <!-- choice buttons input field -->
         <div id="choice_form" class="choice_form">
@@ -62,7 +60,12 @@
             </div>
           </div>
           <div class="choice_form_input">
-            <input id="choice_ques_input" class="js-copytextarea" type="text" placeholder="Question" />
+            <input
+              id="choice_ques_input"
+              class="js-copytextarea"
+              type="text"
+              placeholder="Question"
+            />
           </div>
           <div class="options">
             <div class="option_boxx">
@@ -135,12 +138,8 @@
         </div>
       </div>
 
-
-
-
       <!-- text field result -->
       <div class="text_result"></div>
-
 
       <div class="text">
         <div id="text_form" class="text_input_form">
@@ -166,9 +165,9 @@
           <div class="text_ans_box">
             <input type="text" placeholder="Enter your answer" />
           </div>
-  
+
           <hr />
-  
+
           <div class="toggleContainer">
             <div class="toggleBox">
               <button>
@@ -185,14 +184,13 @@
             </div>
           </div>
         </div>
-  
-     
+
         <div id="text_output_form" class="text_output_form">
           <div class="choice_output">
             <div class="ques_name">
               <p>1. Question</p>
             </div>
-  
+
             <div class="text_ans_Outbox">
               <input
                 class="text_outputInputField"
@@ -204,14 +202,7 @@
         </div>
       </div>
 
-    
-
-
-      <div class="rating_result">
-
-      </div>
-
-
+      <div class="rating_result"></div>
 
       <!-- rating buttons input field -->
       <div id="rating_input" class="choice_form">
@@ -301,10 +292,6 @@
           </div>
         </div>
       </div>
-
-
-
-
 
       <!-- date buttons input field -->
       <div id="date_input" class="choice_form">
@@ -412,6 +399,95 @@
             </ul>
           </div>
         </button>
+      </div>
+
+      <!-- ranking section -->
+
+      <!-- ranking input -->
+      <div id="ranking_input" class="ranking_input">
+        <div class="btn_group">
+          <div class="btns">
+            <button class="cpybtn">
+              <span class="material-symbols-outlined"> content_copy </span>
+            </button>
+            <button>
+              <span class="material-symbols-outlined"> delete </span>
+            </button>
+            <button>
+              <span class="material-symbols-outlined"> south </span>
+            </button>
+            <button>
+              <span class="material-symbols-outlined"> north </span>
+            </button>
+          </div>
+        </div>
+        <div class="choice_form_input">
+          <input
+            id="choice_ques_input"
+            class="js-copytextarea"
+            type="text"
+            placeholder="Question"
+          />
+        </div>
+        <div class="options">
+          <div class="ranking_InputOption_box" draggable="true">
+            <span class="material-symbols-outlined"> drag_indicator </span>
+            <input type="text" placeholder="Option1" class="" />
+          </div>
+          <div class="ranking_InputOption_box" draggable="true">
+            <span class="material-symbols-outlined"> drag_indicator </span>
+            <input type="text" placeholder="Option2" class="" />
+          </div>
+          <div class="ranking_InputOption_box" draggable="true">
+            <span class="material-symbols-outlined"> drag_indicator </span>
+            <input type="text" placeholder="Option3" class="" />
+          </div>
+        </div>
+
+        <div class="optionContainer">
+          <div class="optionbox">
+            <button>
+              <span class="material-symbols-outlined">add</span> Add option
+            </button>
+
+            <button>Add "Other" option</button>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="toggleContainer">
+          <div class="toggleBox">
+            <button>
+              <span class="material-symbols-outlined"> toggle_off </span>
+              Required
+            </button>
+            <button>
+              <span class="material-symbols-outlined"> more_horiz </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ranking output -->
+      <div id="ranking_output" class="ranking_output">
+        <div class="choice_output">
+          <div class="ques_name">
+            <p id="choice_output_ques">1. Question</p>
+          </div>
+
+          <div class="ranking_options">
+            <div class="ranking_option_box">
+              <p id="choice_output_option1">Option 1</p>
+            </div>
+            <div class="ranking_option_box">
+              <p id="choice_output_option2">Option 2</p>
+            </div>
+            <div class="ranking_option_box">
+              <p id="choice_output_option2">Option 2</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

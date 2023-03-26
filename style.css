@@ -512,3 +512,57 @@ hr {
 }
 
 
+.ranking_input{
+  width: 785px;
+  margin: 10px auto;
+  background: #f5f5f5;
+  border-top: 4px solid #0b9397;
+  border-radius: 2px;
+}
+
+.ranking_input .options {
+  margin: 20px 60px;
+}
+
+.ranking_output{
+  width: 785px;
+  min-height: 200px;
+  margin: 20px auto;
+  border-radius: 2px;
+  padding: 10px;
+  transition: all .6s ease;
+}
+
+.ranking_output:hover {
+  background-color: #f5f5f5;
+}
+
+.ranking_options{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ranking_input .material-symbols-outlined{
+  color: #858383;
+  cursor: pointer;
+}
+.ranking_option_box{
+  width: 100%;
+  /* height: 25px; */
+  border: 1px solid rgb(210, 208, 208);
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border-radius: 3px;
+
+}
+
+.ranking_InputOption_box{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+}
+
