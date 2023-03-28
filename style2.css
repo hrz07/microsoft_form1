@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav{
+    height: 40px;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: start;
+  }
+
+  .viewBtn2{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    gap: 10px;
+    cursor: pointer;
+    margin-left: 100px;
+  }
+
+  body {
+    /* background: #00c9ff;
+    background: -webkit-linear-gradient(to right, #3c9ea1, #00c9ff);
+    background: linear-gradient(to right, #3c9ea1, #00c9ff); */
+    /* background-image: url(./rainbow-vortex.svg); */
+    background: url(https://cdn.forms.office.net/forms/images/aio/wave-pattern-v1.svg)
+        center top / cover no-repeat fixed,
+      linear-gradient(
+        90deg,
+        rgba(3, 120, 124, 0.2) 0%,
+        rgba(3, 120, 124, 0.89) 100%
+      );
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+  }
+
+  .form_container {
+    max-width: 850px;
+    background: rgb(255, 255, 255);
+    border: none;
+    margin: 24px auto;
+    position: relative;
+     min-height: 750px;
+  }
+  .form_heade{
+    background: rgb(3, 120, 124);
+    color: rgb(216, 215, 215);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form_heade>h1{
+    letter-spacing: 2px;
+  }
+
+  .choice_output_container {
+    width: 785px;
+    min-height: 160px;
+    margin: 20px auto;
+    border-radius: 2px;
+    padding: 10px;
+    transition: all .6s ease;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    /* background-color: #f7f4f4; */
+    /* display: none; */
+  }
+
+  .choice_output_container:hover {
+    background-color: #e9e6e6f1;
+  }
+
+  .choice_output {
+    margin-left: 30px;
+    padding: 10px;
+  }
+
+  .input_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+  .input_container input {
+    padding: 7px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+  }
+  
+  .input_container input:hover {
+    border-bottom: 2px solid green;
+  }
+
+  .radio-box {
+    margin-top: 10px;
+  }
+  .radio-option {
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }

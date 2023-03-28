@@ -23,6 +23,7 @@ const text_output_form = document.querySelector("#text_output_form");
 const rating_input = document.querySelector("#rating_input");
 const rating_output = document.querySelector("#rating_output");
 const rating_btn = document.querySelector("#rating_btn");
+const ranking_btn = document.querySelector("#ranking_btn");
 const date_btn = document.querySelector("#date_btn");
 const date_input = document.querySelector("#date_input");
 const date_output = document.querySelector("#date_output");
@@ -34,6 +35,20 @@ const choice_output_ques = document.querySelector("#choice_output_ques");
 const choice_output_option1 = document.querySelector("#choice_output_option1");
 const choice_output_option2 = document.querySelector("#choice_output_option2");
 const choice = document.querySelector(".choice");
+const viewBtn = document.querySelector(".viewBtn");
+const ranking_input = document.querySelector("#ranking_input");
+const ranking_output = document.querySelector("#ranking_output");
+const shortable_list = document.querySelector(".shortable_list");
+let shortable_list_choice = document.querySelector(".shortable_list_choice");
+const ranking_InputOption_box = document.querySelectorAll(".ranking_InputOption_box");
+const ranking_InputOption_box2 = document.querySelectorAll(".ranking_InputOption_box2");
+
+
+
+
+
+
+
 
 // display section
 text_output_form.style.display = "none";
@@ -73,38 +88,134 @@ const text_input_temp = {
 let choice_output_list = [];
 const text_output_list = [];
 
-const dataDelete = (i) => {
-  let parent = document.querySelector("choice_result");
-  let child = document.querySelector(`#choice${i}`);
-  child.remove();
-  let rest = choice_output_list.filter((data, index) => {
-    return i !== index;
+
+document.querySelector("#choice_output_container").style.display = "none";
+
+const makeAChoice = (index) => {
+  const div = document.createElement("div");
+  div.id = `choice${index}`;
+  div.classList.add(`${index}`);
+  div.classList.add('ranking_InputOption_box2');
+  div.draggable = true
+
+  div.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const parent = e.target.closest(".choice_output_container");
+    const index = Number(e.currentTarget.classList[0]);
+
+    if (parent) {
+      showContent(index);
+    }
   });
 
-  choice_output_list = [...rest];
-};
+  div.innerHTML += ` <div class="choice_form">
+ <div class="btn_group">
+   <div class="btns">
+     <button onClick="cpy(${index})">
+       <span class="material-symbols-outlined js-textareacopybtn"> content_copy </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"  onClick="dataDelete(${index})" > delete </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> south </span>
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> north </span>
+     </button>
+   </div>
+ </div>
+ <div class="choice_form_input">
+   <input class="${index} inpu${index}" id="choice_ques_input"  type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
+ </div>
+ <div class="options">
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton1_input"
+       type="text"
+       placeholder="Option1"
+       value="${choice_output_list[index].option1}"
+       class="${index} op1${index}"
+     />
+   </div>
+   <div class="option_boxx">
+     <input type="radio" />
+     <input
+       id="choice_opton2_input"
+       type="text"
+       placeholder="Option2"
+       value="${choice_output_list[index].option2}"
+       class="${index} op2${index}"
+     />
+   </div>
+ </div>
 
-const cpy = (i) => {
-  let copyEle = document.querySelector(`.inpu${i}`);
-  copyEle.focus();
-  copyEle.select();
-  let sc = document.execCommand("copy");
-  if (sc) {
-    alert("copied text");
-  }
-};
+ <div class="optionContainer">
+   <div class="optionbox">
+     <button onClick="choiceAddOption()">
+       <span class="material-symbols-outlined">add</span> Add option
+     </button>
 
-const choiceAddOption = ()=>{
-  console.log("ok");
+     <button>Add "Other" option</button>
+   </div>
+ </div>
+
+ <hr />
+
+ <div class="toggleContainer">
+   <div class="toggleBox">
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Multiple answers
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> toggle_off </span>
+       Required
+     </button>
+     <button>
+       <span class="material-symbols-outlined"> more_horiz </span>
+     </button>
+   </div>
+ </div>
+</div>`;
+
+  choice_result.appendChild(div);
+
+  const choice_ques_input = document.querySelector(`.inpu${index}`);
+  choice_ques_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].ques = e.target.value;
+  });
+
+  const choice_option_input = document.querySelector(`.op1${index}`);
+  choice_option_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].option1 = e.target.value;
+  });
+
+  const choice_option2_input = document.querySelector(`.op2${index}`);
+  choice_option2_input.addEventListener("input", (e) => {
+    const index = Number(e.target.classList[0]);
+    choice_output_list[index].option2 = e.target.value;
+  });
 }
 
 
-document.querySelector("#choice_output_container").style.display = "none";
+const showContentDuplicate = () => {
+  choice_output_list.forEach((data, i) => {
+      makeAChoice(i);
+  })
+}
+
 const showContent = (index) => {
+
   if (typeof index === "number" && index >= 0) {
     choice_output_list[index].status = false;
   }
   choice_output_list.forEach((data, i) => {
+
     let check = document.getElementById(`choice${i}`);
 
     document.getElementById(`choice${i}`).innerHTML = "";
@@ -112,6 +223,11 @@ const showContent = (index) => {
     if (data?.status) {
       document.getElementById(`choice${i}`).innerHTML = `
           <div id="choice_output_container" class="choice_output_container">
+          <div class="dragIcon">
+          <span class="material-symbols-outlined ">
+            drag_handle
+            </span>
+        </div>
           <div class="choice_output">
             <div class="ques_name">
               <p id="choice_output_ques">${i + 1}. ${data.ques}</p>
@@ -227,6 +343,58 @@ const showContent = (index) => {
   });
 };
 
+
+window.addEventListener('DOMContentLoaded', (e) => {
+
+  choice_output_list = JSON.parse(localStorage.getItem('all_outputs'));
+  if (!choice_output_list) {
+    choice_output_list = []
+  }
+
+  showContentDuplicate()
+  showContent()
+})
+
+
+window.addEventListener('beforeunload', (e) => {
+
+  localStorage.setItem('all_outputs', JSON.stringify(choice_output_list));
+})
+
+
+
+
+
+
+
+
+const dataDelete = (i) => {
+  let parent = document.querySelector("choice_result");
+  let child = document.querySelector(`#choice${i}`);
+  child.remove();
+  let rest = choice_output_list.filter((data, index) => {
+    return i !== index;
+  });
+
+  choice_output_list = [...rest];
+};
+
+const cpy = (i) => {
+  let copyEle = document.querySelector(`.inpu${i}`);
+  copyEle.focus();
+  copyEle.select();
+  let sc = document.execCommand("copy");
+  if (sc) {
+    alert("copied text");
+  }
+};
+
+
+// const choiceAddOption = ()=>{
+//   console.log("ok");
+// }
+
+
 body.addEventListener("click", (e) => {
   e.stopPropagation();
 
@@ -328,112 +496,116 @@ choice_button.addEventListener("click", (e) => {
 
   const index = choice_output_list.length - 1;
 
-  const div = document.createElement("div");
-  div.id = `choice${index}`;
-  div.classList.add(`${index}`);
+  // const div = document.createElement("div");
+  // div.id = `choice${index}`;
+  // div.classList.add(`${index}`);
+  // div.classList.add('ranking_InputOption_box2');
+  // div.draggable = true
 
-  div.addEventListener("click", (e) => {
-    e.stopPropagation();
+  // div.addEventListener("click", (e) => {
+  //   e.stopPropagation();
 
-    const parent = e.target.closest(".choice_output_container");
-    const index = Number(e.currentTarget.classList[0]);
+  //   const parent = e.target.closest(".choice_output_container");
+  //   const index = Number(e.currentTarget.classList[0]);
 
-    if (parent) {
-      showContent(index);
-    }
-  });
+  //   if (parent) {
+  //     showContent(index);
+  //   }
+  // });
 
-  div.innerHTML += ` <div class="choice_form">
- <div class="btn_group">
-   <div class="btns">
-     <button onClick="cpy(${index})">
-       <span class="material-symbols-outlined js-textareacopybtn"> content_copy </span>
-     </button>
-     <button>
-       <span class="material-symbols-outlined"  onClick="dataDelete(${index})" > delete </span>
-     </button>
-     <button>
-       <span class="material-symbols-outlined"> south </span>
-     </button>
-     <button>
-       <span class="material-symbols-outlined"> north </span>
-     </button>
-   </div>
- </div>
- <div class="choice_form_input">
-   <input class="${index} inpu${index}" id="choice_ques_input"  type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
- </div>
- <div class="options">
-   <div class="option_boxx">
-     <input type="radio" />
-     <input
-       id="choice_opton1_input"
-       type="text"
-       placeholder="Option1"
-       value="${choice_output_list[index].option1}"
-       class="${index} op1${index}"
-     />
-   </div>
-   <div class="option_boxx">
-     <input type="radio" />
-     <input
-       id="choice_opton2_input"
-       type="text"
-       placeholder="Option2"
-       value="${choice_output_list[index].option2}"
-       class="${index} op2${index}"
-     />
-   </div>
- </div>
+//   div.innerHTML += ` <div class="choice_form">
+//  <div class="btn_group">
+//    <div class="btns">
+//      <button onClick="cpy(${index})">
+//        <span class="material-symbols-outlined js-textareacopybtn"> content_copy </span>
+//      </button>
+//      <button>
+//        <span class="material-symbols-outlined"  onClick="dataDelete(${index})" > delete </span>
+//      </button>
+//      <button>
+//        <span class="material-symbols-outlined"> south </span>
+//      </button>
+//      <button>
+//        <span class="material-symbols-outlined"> north </span>
+//      </button>
+//    </div>
+//  </div>
+//  <div class="choice_form_input">
+//    <input class="${index} inpu${index}" id="choice_ques_input"  type="text" value="${choice_output_list[index].ques}" placeholder="Question" />
+//  </div>
+//  <div class="options">
+//    <div class="option_boxx">
+//      <input type="radio" />
+//      <input
+//        id="choice_opton1_input"
+//        type="text"
+//        placeholder="Option1"
+//        value="${choice_output_list[index].option1}"
+//        class="${index} op1${index}"
+//      />
+//    </div>
+//    <div class="option_boxx">
+//      <input type="radio" />
+//      <input
+//        id="choice_opton2_input"
+//        type="text"
+//        placeholder="Option2"
+//        value="${choice_output_list[index].option2}"
+//        class="${index} op2${index}"
+//      />
+//    </div>
+//  </div>
 
- <div class="optionContainer">
-   <div class="optionbox">
-     <button onClick="choiceAddOption()">
-       <span class="material-symbols-outlined">add</span> Add option
-     </button>
+//  <div class="optionContainer">
+//    <div class="optionbox">
+//      <button onClick="choiceAddOption()">
+//        <span class="material-symbols-outlined">add</span> Add option
+//      </button>
 
-     <button>Add "Other" option</button>
-   </div>
- </div>
+//      <button>Add "Other" option</button>
+//    </div>
+//  </div>
 
- <hr />
+//  <hr />
 
- <div class="toggleContainer">
-   <div class="toggleBox">
-     <button>
-       <span class="material-symbols-outlined"> toggle_off </span>
-       Multiple answers
-     </button>
-     <button>
-       <span class="material-symbols-outlined"> toggle_off </span>
-       Required
-     </button>
-     <button>
-       <span class="material-symbols-outlined"> more_horiz </span>
-     </button>
-   </div>
- </div>
-</div>`;
+//  <div class="toggleContainer">
+//    <div class="toggleBox">
+//      <button>
+//        <span class="material-symbols-outlined"> toggle_off </span>
+//        Multiple answers
+//      </button>
+//      <button>
+//        <span class="material-symbols-outlined"> toggle_off </span>
+//        Required
+//      </button>
+//      <button>
+//        <span class="material-symbols-outlined"> more_horiz </span>
+//      </button>
+//    </div>
+//  </div>
+// </div>`;
 
-  choice_result.appendChild(div);
+//   choice_result.appendChild(div);
 
-  const choice_ques_input = document.querySelector(`.inpu${index}`);
-  choice_ques_input.addEventListener("input", (e) => {
-    const index = Number(e.target.classList[0]);
-    choice_output_list[index].ques = e.target.value;
-  });
+  makeAChoice(index);
 
-  const choice_option_input = document.querySelector(`.op1${index}`);
-  choice_option_input.addEventListener("input", (e) => {
-    const index = Number(e.target.classList[0]);
-    choice_output_list[index].option1 = e.target.value;
-  });
+  // const choice_ques_input = document.querySelector(`.inpu${index}`);
+  // choice_ques_input.addEventListener("input", (e) => {
+  //   const index = Number(e.target.classList[0]);
+  //   choice_output_list[index].ques = e.target.value;
+  // });
 
-  const choice_option2_input = document.querySelector(`.op2${index}`);
-  choice_option2_input.addEventListener("input", (e) => {
-    const index = Number(e.target.classList[0]);
-    choice_output_list[index].option2 = e.target.value;
-  });
+  // const choice_option_input = document.querySelector(`.op1${index}`);
+  // choice_option_input.addEventListener("input", (e) => {
+  //   const index = Number(e.target.classList[0]);
+  //   choice_output_list[index].option1 = e.target.value;
+  // });
+
+  // const choice_option2_input = document.querySelector(`.op2${index}`);
+  // choice_option2_input.addEventListener("input", (e) => {
+  //   const index = Number(e.target.classList[0]);
+  //   choice_output_list[index].option2 = e.target.value;
+  // });
 });
 
 // <------------------text button---------------------->
@@ -658,3 +830,62 @@ date_output.addEventListener("click", (e) => {
   date_input.style.display = "block";
   date_output.style.display = "none";
 });
+
+
+
+// swap option
+
+ranking_InputOption_box.forEach(item => {
+  item.addEventListener('dragstart', () => {
+    setTimeout(() => item.classList.add('dragging'), 0);
+  })
+  item.addEventListener('dragend', () => item.classList.remove('dragging'))
+})
+
+const initShortableList = (e) => {
+  e.preventDefault();
+  const draggingItem = shortable_list.querySelector('.dragging')
+  const siblings = [...shortable_list.querySelectorAll('.ranking_InputOption_box:not(.dragging)')]
+  let nextSibling = siblings.find(sibling => {
+    return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+  })
+  shortable_list.insertBefore(draggingItem, nextSibling)
+}
+shortable_list.addEventListener('dragover', initShortableList)
+shortable_list.addEventListener('dragenter', e => e.preventDefault())
+
+
+
+
+
+
+ranking_input.style.display='none';
+ranking_output.style.display='none';
+
+// ranking button 
+ranking_btn.addEventListener('click',()=>{
+  ranking_input.style.display='block';
+  btnGroup.style.display = "none";
+  addButton.style.display = "flex";
+})
+
+
+
+
+// choice swap section
+
+new Sortable(shortable_list_choice, {
+  handle: '.dragIcon',
+  animation: 200
+})
+
+
+
+// >------------------------------preview Button--------------------------------------<
+
+viewBtn.addEventListener('click', () => {
+  location.href = './preview.html'
+})
+
+
+

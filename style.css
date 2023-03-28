@@ -10,20 +10,43 @@
   padding: 0;
 }
 
+nav{
+  height: 40px;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: end;
+}
+.viewBtn{
+  display: flex;
+  align-items: center;
+  width: 200px;
+  gap: 10px;
+  cursor: pointer;
+}
+
 body {
-  background: #00c9ff;
-  background: -webkit-linear-gradient(to right, #3c9ea1, #00c9ff);
-  background: linear-gradient(to right, #3c9ea1, #00c9ff);
+  background: url(https://cdn.forms.office.net/forms/images/aio/wave-pattern-v1.svg)
+      center top / cover no-repeat fixed,
+    linear-gradient(
+      90deg,
+      rgba(3, 120, 124, 0.2) 0%,
+      rgba(3, 120, 124, 0.89) 100%
+    );
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: "Roboto", sans-serif;
+  height: 100vh;
+  margin-bottom: 30px;
 }
 
 .form_container {
   max-width: 850px;
   background: white;
-
   margin: 24px auto;
   position: relative;
   padding: 1px;
+ 
 }
 
 /* form top heading & input section */
@@ -465,7 +488,7 @@ hr {
 .options{
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .options input{
@@ -563,6 +586,27 @@ hr {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
 
+.ranking_InputOption_box.dragging :where(span, .ranking_input_field){
+  opacity: 0;
+}
+
+.ranking_InputOption_box2.dragging :where(.choice_output_container){
+  opacity: 0;
+}
+.dragIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.dragIcon .material-symbols-outlined{
+  font-size: 30px;
+  padding: 5px;
 }
 
